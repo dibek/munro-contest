@@ -1,16 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Munros msg="Welcome to Your Munros App"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Munros from "./components/Munros";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Munros
+  },
+  data () {
+    return {
+      username: ''
+    }
+  },
 }
 </script>
 

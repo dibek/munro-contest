@@ -1,0 +1,4 @@
+rootProject.name = 'munro-root'
+include ':munro-service'
+
+//project(':munro-service').projectDir = "$rootDir/munro-service" as File
