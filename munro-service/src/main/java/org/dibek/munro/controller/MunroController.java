@@ -33,7 +33,9 @@ public class MunroController extends BaseController {
             @RequestParam(value = "maxHeight", required = false) Double maxHeight,
              @RequestParam(value = "category", required = false) String category,
             @RequestParam(value = "sort", required = false) String sort,
-            @RequestParam(value = "direction", required = false) String direction
+            @RequestParam(value = "direction", required = false) String direction,
+            @RequestParam(value = "page", required = false) Integer page,
+            @RequestParam(value = "size", required = false) Integer size
     ) {
         MunroInfo.MunroInfoBuilder builder = MunroInfo.MunroInfoBuilder.aMunroInfo();
         if (minHeight != null) {
@@ -55,7 +57,7 @@ public class MunroController extends BaseController {
         } else {
             responseHeaders.add("X-Total-Count", Long.toString(optionalMunroInfos.get().size()));
             List<MunroInfo> munroInfoList = MunroInfoSorter.sort(optionalMunroInfos.get(),(sort != null? sort:"heightMeter"), (direction != null? direction:"ASC"));
-            munroInfoList = MunroPaginator.paginate(munroInfoList,10,1);
+            munroInfoList = MunroPaginator.paginate(munroInfoList,(size != null ?size:10),(page != null ?page:1));
             responseEntity = new ResponseEntity<Object>(munroInfoList,responseHeaders,HttpStatus.OK);
         }
         return responseEntity;
