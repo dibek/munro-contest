@@ -1,4 +1,4 @@
-# munro-app2
+# munro-app
 
 ## Project setup
 ```
@@ -15,6 +15,11 @@ yarn serve
 yarn build
 ```
 
+### Run your unit tests
+```
+yarn test:unit
+```
+
 ### Lints and fixes files
 ```
 yarn lint
@@ -22,12 +27,3 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-### Launch vue UI
-yarn vue ui
-
-
-### Launch test
-
-yarn jest

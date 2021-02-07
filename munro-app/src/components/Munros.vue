@@ -1,64 +1,54 @@
 <template>
-  List Munros
-  <h1>{{ msg }}</h1>
-  <section v-if="errored">
-    <p>We're sorry, we're not able to retrieve the list of munros  at the moment, please try back later</p>
-  </section>
-  <section v-else>
-    <div v-if="loading">Loading...</div>
-  </section>
+  <ag-grid-vue
+    style="width: 1000px; height: 1000px;"
+    class="ag-theme-alpine"
+    :columnDefs="columnDefs"
+    :rowData="getRowData"
+  >
+  </ag-grid-vue>
 </template>
 
-
 <script>
-import axios from "axios";
-
+import { AgGridVue } from "ag-grid-vue";
 export default {
-  name: 'Munros',
-  props: {
-    msg: String
-  },
-  data () {
+  name: "App",
+  data() {
     return {
-      data: null,
-      loading: true,
-      errored: false
+      columnDefs: null,
+      category: null,
+      minHeight: null,
+      maxHeight: null,
+      rowData: null
+    };
+  },
+  components: {
+    AgGridVue
+  },
+  beforeMount() {
+    this.columnDefs = [
+      { field: "name", sortable: true },
+      { field: "heightMeter", sortable: true },
+      { field: "gridRef", sortable: true },
+      { field: "category", sortable: true, filter: true }
+    ];
+    this.rowData = this.$store.state.rowData;
+  },
+  mounted() {
+    this.rowData = this.$store.state.rowData;
+  },
+  computed: {
+    getRowData()
+    {
+      return this.$store.state.rowData;
     }
   },
-  filters: {
-    filterMunros (value) {
-      return value
-    }
-  },
-  mounted () {
-    axios
-        .get('http://localhost:8080/v1/api/munros')
-        .then(response => {
-          this.data = response
-        })
-        .catch(error => {
-          console.log(error)
-          this.errored = true
-        })
-        .finally(() => this.loading = false)
+  watch() {
+    this.rowData = this.$store.state.rowData;
   }
-}
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style lang="scss">
+@import "../../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 </style>

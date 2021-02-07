@@ -55,6 +55,7 @@ public class MunroController extends BaseController {
         } else {
             responseHeaders.add("X-Total-Count", Long.toString(optionalMunroInfos.get().size()));
             List<MunroInfo> munroInfoList = MunroInfoSorter.sort(optionalMunroInfos.get(),(sort != null? sort:"heightMeter"), (direction != null? direction:"ASC"));
+            munroInfoList = MunroPaginator.paginate(munroInfoList,10,1);
             responseEntity = new ResponseEntity<Object>(munroInfoList,responseHeaders,HttpStatus.OK);
         }
         return responseEntity;
