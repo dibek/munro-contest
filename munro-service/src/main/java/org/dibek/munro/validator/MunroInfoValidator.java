@@ -13,11 +13,11 @@ public class MunroInfoValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         MunroInfo munroInfo = (MunroInfo)  target;
-        if (munroInfo.getMinimumHeight() != null && munroInfo.getMaximumHeight() != null) {
-            if (munroInfo.getMinimumHeight().compareTo(munroInfo.getMaximumHeight()) > 0) {
+        if (munroInfo.getMinHeight() != null && munroInfo.getMaxHeight() != null) {
+            if (munroInfo.getMinHeight().compareTo(munroInfo.getMaxHeight()) > 0) {
                 errors.rejectValue("minimumHeight", ErrorCodes.MINHEIGHTHIGHERMAXHEIGHT.code);
             }
-            if (munroInfo.getMaximumHeight().compareTo(munroInfo.getMinimumHeight()) < 0) {
+            if (munroInfo.getMaxHeight().compareTo(munroInfo.getMinHeight()) < 0) {
                 errors.rejectValue("maximumHeight",  ErrorCodes.MAXHEIGHTLOWERMINHEIGHT.code);
             }
         }

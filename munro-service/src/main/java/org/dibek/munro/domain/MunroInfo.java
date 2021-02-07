@@ -69,11 +69,14 @@ public class MunroInfo {
     @JsonIgnore  @CsvBindByName(column = "Comments")
     private String comments;
 
+
     private String category;
 
-    private BigDecimal minimumHeight;
+    @JsonIgnore
+    private BigDecimal minHeight;
 
-    private BigDecimal maximumHeight;
+    @JsonIgnore
+    private BigDecimal maxHeight;
 
 
 
@@ -216,13 +219,16 @@ public class MunroInfo {
     }
 
 
-    public BigDecimal getMinimumHeight() {
-        return minimumHeight;
+    public BigDecimal getMinHeight() {
+        return minHeight;
     }
 
-    public BigDecimal getMaximumHeight() {
-        return maximumHeight;
+    public BigDecimal getMaxHeight() {
+        return maxHeight;
     }
+
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -269,8 +275,8 @@ public class MunroInfo {
         private String yPost1997;
         private String comments;
         private String category;
-        private BigDecimal minimumHeight;
-        private BigDecimal maximumHeight;
+        private BigDecimal minHeight;
+        private BigDecimal maxHeight;
 
         private MunroInfoBuilder() {
         }
@@ -429,19 +435,20 @@ public class MunroInfo {
             return this;
         }
 
-        public MunroInfoBuilder withMinimumHeight(BigDecimal minimumHeight) {
-            this.minimumHeight = minimumHeight;
+        public MunroInfoBuilder withMinHeight(BigDecimal minHeight) {
+            this.minHeight = minHeight;
             return this;
         }
 
-        public MunroInfoBuilder withMaximumHeight(BigDecimal maximumHeight) {
-            this.maximumHeight = maximumHeight;
+        public MunroInfoBuilder withMaxHeight(BigDecimal maxHeight) {
+            this.maxHeight = maxHeight;
             return this;
         }
 
         public MunroInfo build() {
             MunroInfo munroInfo = new MunroInfo();
             munroInfo.y1953 = this.y1953;
+            munroInfo.minHeight = this.minHeight;
             munroInfo.rhbSection = this.rhbSection;
             munroInfo.runningNo = this.runningNo;
             munroInfo.y1974 = this.y1974;
@@ -459,10 +466,9 @@ public class MunroInfo {
             munroInfo.y1933 = this.y1933;
             munroInfo.category = this.category;
             munroInfo.streetMapUrl = this.streetMapUrl;
-            munroInfo.maximumHeight = this.maximumHeight;
+            munroInfo.maxHeight = this.maxHeight;
             munroInfo.y1921 = this.y1921;
             munroInfo.y1981 = this.y1981;
-            munroInfo.minimumHeight = this.minimumHeight;
             munroInfo.section = this.section;
             munroInfo.gridRefXY = this.gridRefXY;
             munroInfo.xCoord = this.xCoord;

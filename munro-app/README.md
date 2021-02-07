@@ -22,3 +22,12 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Launch vue UI
+yarn vue ui
+
+
+### Launch test
+
+yarn jest

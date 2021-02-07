@@ -58,7 +58,7 @@ class MunroServiceTest {
     @Test
     public void getMunroListByMinimumHeight() {
         MunroInfo munroInfo = MunroInfo.MunroInfoBuilder.aMunroInfo()
-                .withMinimumHeight(new BigDecimal(2000))
+                .withMinHeight(new BigDecimal(2000))
                 .build();
         List<MunroInfo> results = munroService.filterByEntity(munroInfo).get();
         assertTrue(results.size() == 0);
@@ -68,7 +68,7 @@ class MunroServiceTest {
     @Test
     public void getMunroListByMinimumHeight1300() {
         MunroInfo munroInfo = MunroInfo.MunroInfoBuilder.aMunroInfo()
-                .withMinimumHeight(new BigDecimal(1300))
+                .withMinHeight(new BigDecimal(1300))
                 .build();
         List<MunroInfo> results = munroService.filterByEntity(munroInfo).get();
         assertTrue(results.size() > 0);
@@ -78,8 +78,8 @@ class MunroServiceTest {
     @Test
     public void getMunroListByMinimumHeight800Max900() {
         MunroInfo munroInfo = MunroInfo.MunroInfoBuilder.aMunroInfo()
-                .withMinimumHeight(new BigDecimal(900))
-                .withMaximumHeight(new BigDecimal(1000))
+                .withMinHeight(new BigDecimal(900))
+                .withMaxHeight(new BigDecimal(1000))
                 .build();
         List<MunroInfo> results = munroService.filterByEntity(munroInfo).get();
         assertTrue(results.size() > 0);

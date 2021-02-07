@@ -3,8 +3,10 @@ package org.dibek.munro.service;
 import org.dibek.munro.domain.MunroInfo;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collectors;
@@ -32,23 +34,23 @@ public class MunroService {
 
     private List<MunroInfo> extractByCategory(MunroInfo munroInfo) {
         return munroInfoConcurrentMap.values().stream().
-                filter(item -> item.getCategory().contains(munroInfo.getCategory()) ||
+                filter(item -> item.getCategory().contains(munroInfo.getCategory().toUpperCase()) ||
                 munroInfo.getCategory().contains("null"))
                 .collect(Collectors.toList());
     }
 
     private List<MunroInfo> filterByMinimumHeight(List<MunroInfo> munroInfoList, MunroInfo munroInfo) {
         return munroInfoList.stream().
-                filter(item -> munroInfo.getMinimumHeight() == null ||
-                                item.getHeightMeter().compareTo(munroInfo.getMinimumHeight()) > 0
+                filter(item -> munroInfo.getMinHeight() == null ||
+                                item.getHeightMeter().compareTo(munroInfo.getMinHeight()) > 0
                         )
                 .collect(Collectors.toList());
     }
 
     private List<MunroInfo> filterByMaximumHeight(List<MunroInfo> munroInfoList, MunroInfo munroInfo) {
         return munroInfoList.stream().
-                filter(item -> munroInfo.getMaximumHeight() == null ||
-                                item.getHeightMeter().compareTo(munroInfo.getMaximumHeight()) < 0
+                filter(item -> munroInfo.getMaxHeight() == null ||
+                                item.getHeightMeter().compareTo(munroInfo.getMaxHeight()) < 0
                         )
                 .collect(Collectors.toList());
     }
