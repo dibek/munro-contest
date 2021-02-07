@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.assertj.core.api.Assertions.not;
 import static org.hamcrest.Matchers.hasItem;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -79,14 +80,92 @@ class MunroControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .param("minHeight","1100")
                 .param("maxHeight","1200")
+                .param("category", "top")
+                .param("sort","name")
+                .param("direction","DESC")
         )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[*].gridRef").value(hasItem("NN971733")))
-                .andExpect(jsonPath("$[*].name").value(hasItem("Ben More")))
+                .andExpect(jsonPath("$[*].gridRef").value(hasItem("NN246729")))
+                .andExpect(jsonPath("$[*].name").value(hasItem("Mam Sodhail - Ciste Dhubh")))
                 .andDo(document("munros-params"));
     }
 
+    @Test
+    public void getMunroCategoryTOP() throws Exception {
+        getMvc().perform(MockMvcRequestBuilders.get("/v1/api/munros")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("minHeight","1100")
+                .param("maxHeight","1200")
+                .param("category", "top")
+                .param("sort","name")
+                .param("direction","DESC")
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[*].category").value(hasItem("TOP")))
+                .andDo(document("munros-params"));
+    }
 
+    @Test
+    public void getMunroCategoryMUN() throws Exception {
+        getMvc().perform(MockMvcRequestBuilders.get("/v1/api/munros")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("minHeight","1100")
+                .param("maxHeight","1200")
+                .param("category", "mun")
+                .param("sort","name")
+                .param("direction","DESC")
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[*].category").value(hasItem("MUN")))
+                .andDo(document("munros-params"));
+    }
 
+    @Test
+    public void getMunroCategorySortByHeightAsc() throws Exception {
+        getMvc().perform(MockMvcRequestBuilders.get("/v1/api/munros")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("sort","heightMeter")
+                .param("direction","ASC")
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].heightMeter").value("899"))
+                .andDo(document("munros-params"));
+    }
+
+    @Test
+    public void getMunroCategorySortByHeightDesc() throws Exception {
+        getMvc().perform(MockMvcRequestBuilders.get("/v1/api/munros")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("sort","heightMeter")
+                .param("direction","DESC")
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].heightMeter").value("1344.53"))
+                .andDo(document("munros-params"));
+    }
+
+    @Test
+    public void getMunroCategorySortByNameAsc() throws Exception {
+        getMvc().perform(MockMvcRequestBuilders.get("/v1/api/munros")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("sort","name")
+                .param("direction","ASC")
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("A' Bhuidheanach Bheag"))
+                .andDo(document("munros-params"));
+    }
+
+    @Test
+    public void getMunroCategorySortByNameDesc() throws Exception {
+        getMvc().perform(MockMvcRequestBuilders.get("/v1/api/munros")
+                .accept(MediaType.APPLICATION_JSON)
+                .param("sort","name")
+                .param("direction","DESC")
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("Tom a' Choinich - Tom a' Choinich Beag"))
+                .andDo(document("munros-params"));
+    }
 
 }
