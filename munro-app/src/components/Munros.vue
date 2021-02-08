@@ -42,9 +42,7 @@ export default {
       return this.$store.state.rowData;
     }
   },
-/*  watch() {
-    this.rowData = this.$store.state.rowData;
-  }*/
+
 };
 </script>
 
