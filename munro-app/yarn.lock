@@ -1841,7 +1841,7 @@
   resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-4.5.11.tgz#ea99493131182285f7ac2762290354d6e5b188e8"
   integrity sha512-aDQNw+oGk5+KR0vL9TocjfzyYHTJxR2lS8iPbcL4lRglCs2dudOE7QWXypj5dM4rQus0jJ5fxJTS55o9uy9fcQ==
 
-"@vue/cli-plugin-babel@~4.5.0":
+"@vue/cli-plugin-babel@^4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-4.5.11.tgz#7c1db4ca2f911e2156e7d1cf774fe2ad0f7428eb"
   integrity sha512-ogUMeO2waDtghIWwmuAzMJAnnPdmqRdJlwJDca9u6BK9jX1bxNThBSFS/MN2VmlYzulOnqH4zAC87jTWNg/czg==

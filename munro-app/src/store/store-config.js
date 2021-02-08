@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export default {
   state: {
     rowData: [],
     searchData: {
@@ -14,7 +14,8 @@ export default new Vuex.Store({
       category: '',
       minHeight: 0,
       maxHeight:2000
-    }
+    },
+    pending: false
   },
   mutations: {
     loadRowDataMutation(state, payload) {
@@ -34,4 +35,4 @@ export default new Vuex.Store({
   },
   modules: {},
   getter: {}
-});
+};

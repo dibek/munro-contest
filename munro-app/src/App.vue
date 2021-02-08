@@ -6,7 +6,7 @@
     <br/>
     Page<input name="page" v-model="page" />
     Element for page<input name="size" v-model="size" />
-    <input type="button" value="Search" @click="searchMunro" />
+    <input id="search-submit" type="button" value="Search" @click="searchMunro" />
     <Munros  :rowData="rowData"/>
   </form>
 </template>
