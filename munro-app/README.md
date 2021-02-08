@@ -15,7 +15,7 @@ yarn serve
 yarn build
 ```
 
-### Run your unit tests
+### Run your unit tests (at the moment not working for some jest conf issue)
 ```
 yarn test:unit
 ```

@@ -36,7 +36,13 @@ export default {
         this.$store.dispatch("loadRowDataAction", {
          rowData: response.data
         });
+
   });
+  },
+  computed: {
+    getSearchData() {
+      return this.$store.state.searchData;
+    }
   },
   methods: {
     searchMunro: function() {
@@ -61,6 +67,15 @@ export default {
           this.$store.dispatch("loadRowDataAction", {
             rowData: response.data
           });
+          this.$store.dispatch("setSearchDataAction",{
+            searchData: {
+              minHeight: this.minHeight,
+              maxHeight: this.maxHeight,
+              category: this.category,
+              page: this.page,
+              size: this.size
+            }
+          })
         })
     }
   }
